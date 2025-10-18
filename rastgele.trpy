@@ -1,0 +1,10 @@
+# -*- coding: utf-8 -*-
+# Rastgele modülü
+
+içe_aktar random
+
+tanımla sayı(başlangıç, bitiş):
+    geri_dön random.randint(başlangıç, bitiş)
+
+tanımla seçim(liste):
+    geri_dön random.choice(liste)

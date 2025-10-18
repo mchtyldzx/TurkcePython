@@ -1,0 +1,14 @@
+# -*- coding: utf-8 -*-
+#Dosya İşlemleri
+
+tanımla yaz(dosya_adi, veri):
+    dosya = open(dosya_adi, "w", encoding="utf-8")
+    dosya.write(veri)
+    dosya.close()
+    print("Dosyaya yazıldı:", dosya_adi)
+
+tanımla oku(dosya_adi):
+    dosya = open(dosya_adi, "r", encoding="utf-8")
+    veri = dosya.read()
+    dosya.close()
+    geri_dön veri

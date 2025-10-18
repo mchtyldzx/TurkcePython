@@ -1,0 +1,48 @@
+# -*- coding: utf-8 -*-
+# Tüm modüller test
+
+içe_aktar matematik
+içe_aktar dize
+içe_aktar rastgele
+içe_aktar yardımcı
+
+yaz("Türkçe Python Test Başlıyor...\n")
+
+# Dize işlemleri
+metin = "lorem ipsum dolor"
+yaz("BÜYÜTÜLMÜŞ:", dize.büyüt(metin))
+yaz("TERS:", dize.ters(metin))
+yaz("UZUNLUK:", dize.uzunluk(metin))
+
+# Rastgele sayı ve seçim
+sayi = rastgele.sayı(1, 10)
+yaz("Rastgele sayı:", sayi)
+
+liste = ["ananas", "muz", "kiraz", "elma"]
+secilen = rastgele.seçim(liste)
+yaz("Rastgele seçim:", secilen)
+
+# Matematik modülü
+yaz("\nMatematik işlemleri:")
+yaz("Karesi:", matematik.kare(sayi))
+yaz("Küpü:", matematik.kup(sayi))
+yaz("Toplam:", matematik.topla(10, 5))
+yaz("Fark:", matematik.fark(20, 8))
+yaz("Çarpım:", matematik.carp(3, 4))
+yaz("Bölüm:", matematik.bol(10, 2))
+
+# Döngü örneği
+yaz("\nDöngü başlıyor:")
+tekrar i 1’den 4’e kadar:
+    eğer i eşittir 3 ise:
+        yardımcı.renkli_yaz("yeşil", "Bu üç!")
+    değilse:
+        yardımcı.renkli_yaz("mavi", "Değer: " + str(i))
+
+# Bekleme örneği
+yaz("\nZaman testi:")
+yardımcı.renkli_yaz("kırmızı", "Şu an: " + yardımcı.an())
+yardımcı.bekle(1)
+yardımcı.renkli_yaz("kırmızı", "1 saniye geçti!")
+
+yaz("\nProgram başarıyla tamamlandı!")

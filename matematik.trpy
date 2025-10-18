@@ -1,0 +1,23 @@
+# -*- coding: utf-8 -*-
+# Türkçe Python Modülü:  Matematik modülü
+
+tanımla kare(sayi):
+    geri_dön sayi ** 2
+
+tanımla kup(sayi):
+    geri_dön sayi ** 3
+
+tanımla topla(a, b):
+    geri_dön a + b
+
+tanımla fark(a, b):
+    geri_dön a - b
+
+tanımla carp(a, b):
+    geri_dön a * b
+
+tanımla bol(a, b):
+    eğer b eşittir 0 ise:
+        geri_dön "Hata: 0’a bölünemez"
+    değilse:
+        geri_dön a / b

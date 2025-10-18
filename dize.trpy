@@ -1,0 +1,14 @@
+# -*- coding: utf-8 -*-
+# Dize (string) modülü
+
+tanımla büyüt(metin):
+    geri_dön metin.upper()
+
+tanımla küçült(metin):
+    geri_dön metin.lower()
+
+tanımla ters(metin):
+    geri_dön metin[::-1]
+
+tanımla uzunluk(metin):
+    geri_dön len(metin)

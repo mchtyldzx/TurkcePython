@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+# Yardımcı modül
+
+içe_aktar time
+içe_aktar datetime
+içe_aktar colorama
+
+tanımla bekle(saniye):
+    time.sleep(saniye)
+
+tanımla an():
+    geri_dön datetime.datetime.now().strftime("%H:%M:%S")
+
+tanımla renkli_yaz(renk, metin):
+    renk_kod = ""
+    eğer renk eşittir "kırmızı" ise:
+        renk_kod = colorama.Fore.RED
+    eğer renk eşittir "yeşil" ise:
+        renk_kod = colorama.Fore.GREEN
+    eğer renk eşittir "mavi" ise:
+        renk_kod = colorama.Fore.CYAN
+    print(renk_kod + metin + colorama.Style.RESET_ALL)
