@@ -1,48 +1,162 @@
 # -*- coding: utf-8 -*-
-# Tüm modüller test
+# Dil özellikleri + Modül testleri
+
+yaz("=" * 50)
+yaz("   TÜRKÇE PYTHON v1.1 TEST")
+yaz("=" * 50)
+
+yaz("\n" + "=" * 50)
+yaz("BÖLÜM 1: DİL ÖZELLİKLERİ")
+yaz("=" * 50)
+
+yaz("\n1. DÖNDÜR (while) Döngüsü:")
+sayac = 1
+döndür sayac küçük_eşit 5 ise:
+    yaz("  Sayaç:", sayac)
+    sayac = sayac + 1
+
+yaz("\n2. KIR (break) - Döngüden Çıkış:")
+tekrar i 1'den 10'e kadar:
+    eğer i eşittir 5 ise:
+        yaz("  5'e ulaşıldı, döngüden çıkılıyor!")
+        kır
+    yaz("  Değer:", i)
+
+yaz("\n3. GEÇ (continue) - Sonraki İterasyon:")
+tekrar i 1'den 6'e kadar:
+    eğer i eşittir 3 ise:
+        yaz("  3 atlandı!")
+        geç
+    yaz("  Değer:", i)
+
+yaz("\n4. İÇİNDE (in) - Liste Döngüsü:")
+meyveler = ["elma", "armut", "muz", "kiraz"]
+yaz("  Meyveler:", meyveler)
+tekrar meyve meyveler içinde:
+    yaz("    -", meyve)
+
+yaz("\n5. BOŞ (None) Değeri:")
+deger = boş
+eğer deger eşittir boş ise:
+    yaz("   Değer boş (None)")
+
+yaz("\n6. Karşılaştırma Operatörleri:")
+a = 10
+b = 20
+c = 10
+
+eğer a eşit_değil b ise:
+    yaz("   10 eşit_değil 20")
+
+eğer b büyük_eşit a ise:
+    yaz("   20 büyük_eşit 10")
+
+eğer a küçük_eşit b ise:
+    yaz("   10 küçük_eşit 20")
+
+eğer a büyük_eşit c ise:
+    yaz("   10 büyük_eşit 10")
+
+yaz("\n7. KALAN (%) Operatörü:")
+tekrar i 1'den 6'e kadar:
+    sonuc = i kalan 2
+    eğer sonuc eşittir 0 ise:
+        yaz("  ", i, "çift")
+    değilse:
+        yaz("  ", i, "tek")
+
+yaz("\n8. Karmaşık Boolean Koşullar:")
+x = 15
+eğer x büyük_eşit 10 ve x küçük_eşit 20 ise:
+    yaz("   15, 10 ile 20 arasında")
+
+y = 5
+eğer y küçüktür 10 veya y büyüktür 100 ise:
+    yaz("   5, 10'dan küçük veya 100'den büyük")
+
+z = 25
+eğer değil z eşittir 20 ise:
+    yaz("   25, 20'ye eşit değil")
+
+yaz("\n9. Kombine Kullanım - Döngü + Operatörler:")
+sayac = 0
+döndür sayac küçük_eşit 10 ise:
+    eğer sayac eşittir 7 ise:
+        yaz("  7'ye ulaşıldı, çıkılıyor!")
+        kır
+    
+    sonuc = sayac kalan 3
+    eğer sonuc eşittir 0 ise:
+        yaz("  ", sayac, "→ 3'e tam bölünür")
+    
+    sayac = sayac + 1
+
+yaz("\n10. Liste + Operatörler:")
+sayilar = [10, 15, 20, 25, 30]
+tekrar sayi sayilar içinde:
+    eğer sayi büyük_eşit 20 ise:
+        yaz("  ", sayi, "≥ 20")
+
+
+yaz("\n" + "=" * 50)
+yaz("BÖLÜM 2: MODÜL TESTLERİ")
+yaz("=" * 50)
 
 içe_aktar matematik
 içe_aktar dize
 içe_aktar rastgele
 içe_aktar yardımcı
 
-yaz("Türkçe Python Test Başlıyor...\n")
-
-# Dize işlemleri
+yaz("\n11. DİZE MODÜLÜ:")
 metin = "lorem ipsum dolor"
-yaz("BÜYÜTÜLMÜŞ:", dize.büyüt(metin))
-yaz("TERS:", dize.ters(metin))
-yaz("UZUNLUK:", dize.uzunluk(metin))
+yaz("  Orijinal:", metin)
+yaz("  BÜYÜTÜLMÜŞ:", dize.büyüt(metin))
+yaz("  küçültülmüş:", dize.küçült(metin))
+yaz("  TERS:", dize.ters(metin))
+yaz("  Uzunluk:", dize.uzunluk(metin))
 
-# Rastgele sayı ve seçim
-sayi = rastgele.sayı(1, 10)
-yaz("Rastgele sayı:", sayi)
+yaz("\n12. RASTGELE MODÜLÜ:")
+rastgele_sayi = rastgele.sayı(1, 10)
+yaz("  Rastgele sayı (1-10):", rastgele_sayi)
 
 liste = ["ananas", "muz", "kiraz", "elma"]
 secilen = rastgele.seçim(liste)
-yaz("Rastgele seçim:", secilen)
+yaz("  Rastgele seçim:", secilen)
 
-# Matematik modülü
-yaz("\nMatematik işlemleri:")
-yaz("Karesi:", matematik.kare(sayi))
-yaz("Küpü:", matematik.kup(sayi))
-yaz("Toplam:", matematik.topla(10, 5))
-yaz("Fark:", matematik.fark(20, 8))
-yaz("Çarpım:", matematik.carp(3, 4))
-yaz("Bölüm:", matematik.bol(10, 2))
+yaz("\n13. MATEMATİK MODÜLÜ:")
+test_sayi = 5
+yaz("  Sayı:", test_sayi)
+yaz("  Karesi:", matematik.kare(test_sayi))
+yaz("  Küpü:", matematik.kup(test_sayi))
+yaz("  10 + 5 =", matematik.topla(10, 5))
+yaz("  20 - 8 =", matematik.fark(20, 8))
+yaz("  3 × 4 =", matematik.carp(3, 4))
+yaz("  10 ÷ 2 =", matematik.bol(10, 2))
+yaz("  10 ÷ 0 =", matematik.bol(10, 0))
 
-# Döngü örneği
-yaz("\nDöngü başlıyor:")
-tekrar i 1’den 4’e kadar:
-    eğer i eşittir 3 ise:
-        yardımcı.renkli_yaz("yeşil", "Bu üç!")
-    değilse:
-        yardımcı.renkli_yaz("mavi", "Değer: " + str(i))
-
-# Bekleme örneği
-yaz("\nZaman testi:")
-yardımcı.renkli_yaz("kırmızı", "Şu an: " + yardımcı.an())
+yaz("\n14. YARDIMCI MODÜLÜ:")
+yardımcı.renkli_yaz("kırmızı", "  Bu kırmızı metin!")
+yardımcı.renkli_yaz("yeşil", "  Bu yeşil metin!")
+yardımcı.renkli_yaz("mavi", "  Bu mavi metin!")
+yaz("  Şu an:", yardımcı.an())
+yaz("  1 saniye bekleniyor...")
 yardımcı.bekle(1)
-yardımcı.renkli_yaz("kırmızı", "1 saniye geçti!")
+yaz("   Bekleme tamamlandı!")
 
-yaz("\nProgram başarıyla tamamlandı!")
+yaz("\n15. MODÜL + DÖNGÜ KOMBİNASYONU:")
+tekrar i 1'den 4'e kadar:
+    kare_deger = matematik.kare(i)
+    eğer i eşittir 3 ise:
+        yardımcı.renkli_yaz("yeşil", "  " + str(i) + "² = " + str(kare_deger) + " (özel)")
+    değilse:
+        yaz("  " + str(i) + "² = " + str(kare_deger))
+
+# ============================================
+# FİNAL
+# ============================================
+
+yaz("\n" + "=" * 50)
+yaz("    TÜM TESTLER BAŞARIYLA TAMAMLANDI!")
+yaz("=" * 50)
+yaz(" Modül Sistemi: Çalışıyor")
+yaz("=" * 50)
