@@ -11,7 +11,7 @@ from colorama import init, Fore, Style
 
 init(autoreset=True)
 
-SURUM = "1.0.0"
+SURUM = "1.1"
 
 SOZLUK = {
     "tanımla ": "def ",
@@ -19,27 +19,39 @@ SOZLUK = {
     "yoksa_eğer": "elif",
     "değilse": "else",
     "tekrar ": "for ",
+    "döndür ": "while ",
     "arasında": "in range",
+    "içinde": "in",
     "geri_dön": "return",
+    "kır": "break",
+    "geç": "continue",
+    "geçer": "pass",
     "sınıf ": "class ",
     "deneme": "try",
     "hata": "except",
     "doğru": "True",
     "yanlış": "False",
-    "ve": "and",
-    "veya": "or",
-    "değil": "not",
-    " yaz(": " print(",
+    "boş": "None",
+    "eşit_değil": "!=",
+    "büyük_eşit": ">=",
+    "küçük_eşit": "<=",
     "eşittir": "==",
     "büyüktür": ">",
     "küçüktür": "<",
+    " kalan ": " % ",
+    " ve ": " and ",
+    " veya ": " or ",
+    "değil ": "not ",
+    " yaz(": " print(",
     "içe_aktar ": "import ",
 }
 
 KALIPLAR = [
     (r"eğer (.*?) ise:", r"if (\1):"),
     (r"yoksa_eğer (.*?) ise:", r"elif (\1):"),
-    (r"tekrar (\w+) (\d+)[’']?den (\d+)[’']?e kadar:", r"for \1 in range(\2, \3):"),
+    (r"döndür (.*?) ise:", r"while (\1):"),
+    (r"tekrar (\w+) (\d+)['']?den (\d+)['']?e kadar:", r"for \1 in range(\2, \3):"),
+    (r"tekrar (\w+) (.*?) içinde:", r"for \1 in \2:"),
     (r"ata (\w+) = (.*)", r"\1 = \2"),
 ]
 
@@ -67,7 +79,7 @@ def turkce_to_python(kod: str) -> str:
     kod = re.sub(r"\byaz\(", "print(", kod)
     return kod
 
-# Türkçe modül yükleyici (içe_aktar satırlarını da çeviriyor)
+
 def yukle_modul(modul_adi):
     dosya = modul_adi + ".trpy"
     if not os.path.exists(dosya):
@@ -75,7 +87,7 @@ def yukle_modul(modul_adi):
     with open(dosya, "r", encoding="utf-8") as f:
         kod = f.read()
 
-    kod = turkce_to_python(kod)  # Çeviri eklendi
+    kod = turkce_to_python(kod)
     py_dosya = modul_adi + "_temp.py"
     with open(py_dosya, "w", encoding="utf-8") as f:
         f.write(kod)
@@ -100,18 +112,32 @@ def isle_içe_aktar(kod: str, ortam):
 YARDIM_METNI = f"""
 {Fore.CYAN}Türkçe Python Yardım (v{SURUM}){Style.RESET_ALL}
 ---------------------------------------
-ata x 5                → Değişken tanımlar
-yaz("Merhaba")         → Ekrana metin yazar
-eğer x > 3 ise:        → Koşul başlatır
-değilse:               → Alternatif koşul
-tekrar i 1’den 5’e kadar: → Döngü başlatır
-içe_aktar matematik    → Modül ekler (.trpy dosyası)
-bitir                  → Programı sonlandırır
-yardım                 → Bu ekranı gösterir
---sürüm                → Sürüm bilgisini gösterir
+ata x 5                      → Değişken tanımlar
+yaz("Merhaba")               → Ekrana metin yazar
+eğer x > 3 ise:              → Koşul başlatır
+değilse:                     → Alternatif koşul
+tekrar i 1'den 5'e kadar:    → Döngü başlatır (for)
+döndür x < 10 ise:           → While döngüsü
+kır                          → Döngüden çık (break)
+geç                          → Sonraki adıma geç (continue)
+tekrar x liste içinde:       → Liste/dizi üzerinde döngü
+
+Operatörler:
+  eşittir (==), eşit_değil (!=)
+  büyüktür (>), büyük_eşit (>=)
+  küçüktür (<), küçük_eşit (<=)
+  kalan (%)
+  ve (and), veya (or), değil (not)
+
+içe_aktar matematik          → Modül ekler (.trpy dosyası)
+yardım                       → Bu ekranı gösterir
+--sürüm                      → Sürüm bilgisini gösterir
 """
 
 def main():
+    if sys.platform == 'win32':
+        sys.stdout.reconfigure(encoding='utf-8')
+    
     print(Fore.CYAN + f"Türkçe Python v{SURUM}" + Style.RESET_ALL)
     if len(sys.argv) < 2:
         print(Fore.YELLOW + "Kullanım: trpython dosya.trpy" + Style.RESET_ALL)
