@@ -32,6 +32,7 @@ SOZLUK = {
     "doğru": "True",
     "yanlış": "False",
     "boş": "None",
+    # Operatörler - Sıralama önemli (uzun olanlar önce)
     "eşit_değil": "!=",
     "büyük_eşit": ">=",
     "küçük_eşit": "<=",
@@ -39,6 +40,7 @@ SOZLUK = {
     "büyüktür": ">",
     "küçüktür": "<",
     " kalan ": " % ",
+    # Boolean operatörler - Kelime sınırları ile
     " ve ": " and ",
     " veya ": " or ",
     "değil ": "not ",
@@ -72,14 +74,21 @@ def hata_mesaji_cevir(e):
         return Fore.RED + f"Hata: {e}" + Style.RESET_ALL
 
 def turkce_to_python(kod: str) -> str:
+    # Regex kalıpları önce
     for kalip, degisim in KALIPLAR:
         kod = re.sub(kalip, degisim, kod)
+
+    # Kelime bazlı çeviri (string içini bozmaz)
     for tr, en in SOZLUK.items():
-        kod = kod.replace(tr, en)
-    kod = re.sub(r"\byaz\(", "print(", kod)
+        tr_esc = re.escape(tr.strip())
+        kod = re.sub(rf"\b{tr_esc}\b", en.strip(), kod)
+
+    # yaz( → print( özel durumu
+    kod = re.sub(r"\byaz\s*\(", "print(", kod)
     return kod
 
 
+# Türkçe modül yükleyici (içe_aktar satırlarını da çeviriyor)
 def yukle_modul(modul_adi):
     dosya = modul_adi + ".trpy"
     if not os.path.exists(dosya):
@@ -87,7 +96,7 @@ def yukle_modul(modul_adi):
     with open(dosya, "r", encoding="utf-8") as f:
         kod = f.read()
 
-    kod = turkce_to_python(kod)
+    kod = turkce_to_python(kod)  # Çeviri eklendi
     py_dosya = modul_adi + "_temp.py"
     with open(py_dosya, "w", encoding="utf-8") as f:
         f.write(kod)
@@ -135,6 +144,7 @@ yardım                       → Bu ekranı gösterir
 """
 
 def main():
+    # Windows için UTF-8 encoding
     if sys.platform == 'win32':
         sys.stdout.reconfigure(encoding='utf-8')
     
@@ -156,7 +166,7 @@ def main():
         kod = f.read()
 
     yuklu_moduller = isle_içe_aktar(kod, globals())
-    temiz_kod = re.sub(r"içe_aktar .*", "", kod)
+    temiz_kod = re.sub(r"^içe_aktar\s+\w+\s*$", "", kod, flags=re.MULTILINE)
     py_kod = turkce_to_python(temiz_kod)
 
     print(Fore.MAGENTA + "----- ÇEVRİLMİŞ PYTHON KODU -----" + Style.RESET_ALL)
