@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Türkçe Python Modülü:  Matematik modülü
+// Temel matematik işlemleri
 
 tanımla kare(sayi):
     geri_dön sayi ** 2
@@ -21,3 +20,4 @@ tanımla bol(a, b):
         geri_dön "Hata: 0’a bölünemez"
     değilse:
         geri_dön a / b
+
