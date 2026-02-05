@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Dize (string) modülü
+// Metin (string) işlemleri için yardımcı fonksiyonlar
 
 tanımla büyüt(metin):
     geri_dön metin.upper()
@@ -12,3 +11,4 @@ tanımla ters(metin):
 
 tanımla uzunluk(metin):
     geri_dön len(metin)
+
