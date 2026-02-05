@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Rastgele modülü
+// Rastgele sayı üretme işlemleri
 
 içe_aktar random
 
@@ -8,3 +7,4 @@ tanımla sayı(başlangıç, bitiş):
 
 tanımla seçim(liste):
     geri_dön random.choice(liste)
+
