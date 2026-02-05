@@ -46,6 +46,9 @@ SOZLUK = {
     "değil ": "not ",
     " yaz(": " print(",
     "içe_aktar ": "import ",
+    "doğru": "True",
+    "yanlış": "False",
+    "sor": "input",
 }
 
 KALIPLAR = [
@@ -74,17 +77,21 @@ def hata_mesaji_cevir(e):
         return Fore.RED + f"Hata: {e}" + Style.RESET_ALL
 
 def turkce_to_python(kod: str) -> str:
-    # Regex kalıpları önce
-    for kalip, degisim in KALIPLAR:
-        kod = re.sub(kalip, degisim, kod)
+    # // yorumları kaldır
+    kod = re.sub(r"//.*", "", kod)
 
     # Kelime bazlı çeviri (string içini bozmaz)
     for tr, en in SOZLUK.items():
         tr_esc = re.escape(tr.strip())
         kod = re.sub(rf"\b{tr_esc}\b", en.strip(), kod)
 
-    # yaz( → print( özel durumu
+    # yaz( → print(
     kod = re.sub(r"\byaz\s*\(", "print(", kod)
+
+    # arttır / azalt
+    kod = re.sub(r"(\w+)\s+arttır\s+(\d+)", r"\1 += \2", kod)
+    kod = re.sub(r"(\w+)\s+azalt\s+(\d+)", r"\1 -= \2", kod)
+
     return kod
 
 
@@ -186,3 +193,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
