@@ -49,6 +49,7 @@ SOZLUK = {
     "doğru": "True",
     "yanlış": "False",
     "sor": "input",
+    "hiçbiri": "None",
 }
 
 KALIPLAR = [
@@ -193,4 +194,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
